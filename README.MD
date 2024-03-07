@@ -28,5 +28,5 @@ crear <nombre> <apellido> <correo>: Para crear un nuevo usuario.
 ``` 
 node cli.js listar
 node cli.js eliminar 1
-node cli.js crear Juan Perez juan@example.com
+node cli.js crear Juan Camacho juan@example.com
 ```
