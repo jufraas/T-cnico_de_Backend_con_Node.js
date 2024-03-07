@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const axios = require("axios")
-const { program } = require("commander")
+const axios = require("axios");
+const { program } = require("commander");
 
-const apiUrl = "http://localhost:3000"
+const apiUrl = "http://localhost:3000";
 
-program.version("1.0.0").description("cliente para la API REST")
+program.version("1.0.0").description("cliente para la API REST");
 
 program
   .command("listar")
@@ -13,34 +13,34 @@ program
   .description("obtener los usuarios")
   .action(async () => {
     try {
-      const response = await axios.get(`${apiUrl}/users`)
+      const response = await axios.get(`${apiUrl}/users`);
       console.log("usuarios:");
       if (Array.isArray(response.data)) {
         response.data.forEach((user) => {
           console.log(
             `${user.id}: ${user.nombre} ${user.apellido} (${user.correo})`
-          )
-        })
+          );
+        });
       } else {
-        console.log("no se encontraron usuarios.")
+        console.log("no se encontraron usuarios.");
       }
     } catch (error) {
-      console.error("hubo un error al obtener los usuarios:", error.message)
+      console.error("hubo un error al obtener los usuarios:", error.message);
     }
-  })
+  });
 
 program
   .command("eliminar <id>")
   .alias("rm")
-  .description("Eliminar un usuario por su ID")
+  .description("eliminar un usuario")
   .action(async (id) => {
     try {
-      const response = await axios.delete(`${apiUrl}/users/${id}`)
-      console.log("usuario eliminado correctamente")
+      const response = await axios.delete(`${apiUrl}/users/${id}`);
+      console.log("usuario eliminado");
     } catch (error) {
-      console.error("hubo un error al eliminar el usuario:", error.message)
+      console.error("hubo un error al eliminar el usuario:", error.message);
     }
-  })
+  });
 
 program
   .command("crear <nombre> <apellido> <correo>")
@@ -51,11 +51,11 @@ program
         nombre,
         apellido,
         correo,
-      })
-      console.log("usuario creado correctamente:", response.data)
+      });
+      console.log("usuario creado:", response.data);
     } catch (error) {
-      console.error("hubo un error al crear el usuario:", error.message)
+      console.error("hubo un error al crear el usuario:", error.message);
     }
-  })
+  });
 
-program.parse(process.argv)
+program.parse(process.argv);
